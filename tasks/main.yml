@@ -1,0 +1,36 @@
+---
+# # # # #  Local Users  # # # # #
+
+- name: "Group Creation"
+  group:
+    name:  "{{ item.name }}"
+    gid:   "{{ item.gid | default( omit ) }}"
+    state: present
+  with_items: "{{ system_groups | default( [] ) }}"
+  when: item.state | default( 'present' ) == 'present'
+  tags: users
+
+- name: "Set Up Local Users"
+  include: local_user.yml
+  with_items: "{{ system_users | default( [] ) }}"
+  loop_control:
+    loop_var: user
+  when: user.type | default('local') == 'local'
+  tags: users
+
+- name: "Set Up Remote Users"
+  include: remote_user.yml
+  with_items: "{{ system_users | default( [] ) }}"
+  loop_control:
+    loop_var: user
+  when: user.type | default('local') == 'remote'
+  tags: users
+
+- name: "Group Deletion"
+  group:
+    name:  "{{ item.name }}"
+    gid:   "{{ item.gid | default( omit ) }}"
+    state: absent
+  with_items: "{{ system_groups | default( [] ) }}"
+  when: item.state | default( 'present' ) == 'absent'
+  tags: users

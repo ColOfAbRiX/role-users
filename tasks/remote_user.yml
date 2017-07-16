@@ -1,0 +1,7 @@
+---
+# # # # #  User Setup  # # # # #
+
+- name: "Create Home Directory"
+  command: "su - {{ user.username }} -c 'exit'"
+  changed_when: false
+  when: user.state | default('present') == 'present'

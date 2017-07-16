@@ -1,0 +1,16 @@
+---
+
+# Local groups. See documentation for the "group" module
+system_groups: []
+
+# Local users. See documentation for the "user" module
+# Each item has the attribute "type" that specify if the user is
+# local or remote. SSH key creation is disabled
+system_users: []
+#- username: "user1"
+#  groups:   "secondary_group1"
+#  type:     local
+#  use_random_pwd: true
+#- username: "common1"
+#  groups:   "secondary_group2"
+#  type:     remote
