@@ -3,7 +3,7 @@
 
 - name: "Random Password Facts"
   set_fact:
-    random_password: "{{ lookup('password', '/dev/null length=20') | replace('\n', '') }}"
+    random_password: "{{ lookup('password', '/dev/null length=20') | replace('\n', '') | replace(':', '') }}"
     use_random_pwd:  "{% if user.use_random_pwd | default(False) | bool and user.password is not defined %}True{% else %}False{% endif %}"
 
 - name: "User Group Creation"
