@@ -1,38 +1,51 @@
-Role Name
-=========
+# role-users
 
-A brief description of the role goes here.
+Ansible role to manage users and groups on Linux systems.
 
-Requirements
-------------
+The role can configure a user on the system with or initialize a user if the user is a remote one, like if defined on an LDAP server.
+The role can also manage groups, user's group and group membership.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+## Requirements
 
-Role Variables
---------------
+The role requires RHEL/CentOS 7 to work.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Role Variables
 
-Dependencies
-------------
+The variables are fully documented in the [default configuration](defaults/main.yml) file, including their default values and some examples. This file contains all the settings that can be configured.
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Please refer to the default configuration file for the full list and use Linux man pages if you need more information on Sudo.
 
-Example Playbook
-----------------
+| Variable        | Default | Description         |
+| :---            | :---    | :---                |
+| `system_groups` | `[]`    | Groups definitions. |
+| `system_users`  | `[]`    | Users definitions.  |
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+## Example Playbook
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+Using the role without any specific configuration is very simple:
 
-License
--------
+```Yaml
+- hosts: servers
+  roles:
+   - role: users
+     system_groups:
+      - name:     users
+     system_users:
+      - username: alice
+        group:    users
+        groups:   wheel
+        password: Passw0rd
+        type:     local
+```
 
-BSD
+## License
 
-Author Information
-------------------
+MIT
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+## Author Information
+
+[Fabrizio Colonna](colofabrix@tin.it)
+
+## Contributors
+
+Pull requests are also very welcome. Please create a topic branch for your proposed changes. If you don't, this will create conflicts in your fork after the merge.

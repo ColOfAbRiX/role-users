@@ -2,15 +2,34 @@
 
 # Local groups. See documentation for the "group" module
 system_groups: []
+#   # Example of definition of a group
+# - name:  administrators
+#   gid:   1234
+#   state: present
 
-# Local users. See documentation for the "user" module
-# Each item has the attribute "type" that specify if the user is
-# local or remote. SSH key creation is disabled
+# Local users. See documentation for the "user" module Each item has the
+# attribute "type" that specify if the user is local or remote. The role will
+# also create a group with the same name as the user's group and as default
+# behaviour it will assign this group as the user's primary group.
 system_users: []
-#- username: "user1"
-#  groups:   "secondary_group1"
-#  type:     local
-#  use_random_pwd: true
-#- username: "common1"
-#  groups:   "secondary_group2"
-#  type:     remote
+#   # Example of user created on the machine. The options that are allowed are
+#   # the same as the Ansible module "user". The password of this user is given
+# - username:       alice
+#   groups:         secondary_group1
+#   type:           local
+#   password:       Passw0rd
+#   # This user creation is as above but this time the role will generate a random
+#   # password. The password is not saved anywhere and the feature is used to lock
+#   # the account. An explicit password field has priority over use_random_pwd.
+# - username:       bob
+#   type:           local
+#   password:       Passw0rd
+#   use_random_pwd: true
+#   # The type: "remote" instructs the system that the user definition is not on
+#   # the local system but somewhere remote and the only thing that will be set
+#   # up is the user's home directory.
+# - username:       carl
+#   type:           remote
+#   # This makes sure the user is not present on the system
+# - username:       david
+#   state:          absent
