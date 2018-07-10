@@ -7,7 +7,10 @@ The role can also manage groups, user's group and group membership.
 
 ## Requirements
 
-The role requires RHEL/CentOS 7 to work.
+The role requires:
+ - RHEL/CentOS >= 6
+ - Debian >= 7
+ - Ubuntu >= 14
 
 ## Role Variables
 
