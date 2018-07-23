@@ -1,7 +1,7 @@
 ---
 
 # Local groups. See documentation for the "group" module
-system_groups: []
+users_system_groups: []
 #   # Example of definition of a group
 # - name:  administrators
 #   gid:   1234
@@ -11,7 +11,7 @@ system_groups: []
 # attribute "type" that specify if the user is local or remote. The role will
 # also create a group with the same name as the user's group and as default
 # behaviour it will assign this group as the user's primary group.
-system_users: []
+users_system_users: []
 # # Example of user created on the machine. The options that are allowed are the
 # # same as the Ansible module "user". The password of this user is given
 # - username:       alice
