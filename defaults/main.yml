@@ -12,24 +12,28 @@ system_groups: []
 # also create a group with the same name as the user's group and as default
 # behaviour it will assign this group as the user's primary group.
 system_users: []
-#   # Example of user created on the machine. The options that are allowed are
-#   # the same as the Ansible module "user". The password of this user is given
+# # Example of user created on the machine. The options that are allowed are the
+# # same as the Ansible module "user". The password of this user is given
 # - username:       alice
 #   groups:         secondary_group1
 #   type:           local
 #   password:       Passw0rd
-#   # This user creation is as above but this time the role will generate a random
-#   # password. The password is not saved anywhere and the feature is used to lock
-#   # the account. An explicit password field has priority over use_random_pwd.
+# # This user creation is as above but this time the role will generate a random
+# # password. The password is not saved anywhere and the feature is used to lock
+# # the account. An explicit password field has priority over use_random_pwd.
 # - username:       bob
 #   type:           local
 #   password:       Passw0rd
 #   use_random_pwd: true
-#   # The type: "remote" instructs the system that the user definition is not on
-#   # the local system but somewhere remote and the only thing that will be set
-#   # up is the user's home directory.
+# # The type: "remote" instructs the system that the user definition is not on
+# # the local system but somewhere remote and the only thing that will be set up
+# # is the user's home directory.
 # - username:       carl
 #   type:           remote
-#   # This makes sure the user is not present on the system
+# # This makes sure the user is not present on the system
 # - username:       david
 #   state:          absent
+# # This is how you can trust an SSH key:
+# - username:       david
+#   state:          present
+#   authorize_ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAA..."
